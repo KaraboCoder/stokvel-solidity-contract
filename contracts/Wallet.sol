@@ -1,6 +1,6 @@
 pragma solidity ^0.8.17;
 
-import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Wallet is Ownable {
     mapping(address => uint) public balances;
@@ -26,10 +26,6 @@ contract Wallet is Ownable {
         uint _value,
         uint timestamp
     );
-
-    constructor() public {
-        owner = msg.sender;
-    }
 
     function deposit() public payable {
         require(msg.value > 0, "Invalid deposit amount");
@@ -57,11 +53,12 @@ contract Wallet is Ownable {
 
     function processWithdrawal(address _to) public onlyOwner {
         require(requests[_to].approved, "Withdrawal not approved");
+        address payable to = payable(_to);
         uint amount = requests[_to].amount;
         balances[_to] -= amount;
         requests[_to].amount = 0;
         requests[_to].approved = false;
-        _to.transfer(amount);
+        to.transfer(amount);
         emit Withdrawal(_to, amount, block.timestamp);
     }
 

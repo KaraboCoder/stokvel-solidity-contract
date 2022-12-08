@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx hardhat test tests/wallet.ts"
   },
-  "author": "",
+  "author": "Karabo Ngwato",
   "license": "ISC",
   "devDependencies": {
     "@ethersproject/abi": "^5.7.0",
@@ -18,10 +18,19 @@
     "@nomiclabs/hardhat-etherscan": "^3.1.3",
     "@typechain/ethers-v5": "^10.1.1",
     "@typechain/hardhat": "^6.1.4",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.12",
     "chai": "^4.3.7",
     "ethers": "^5.7.2",
+    "hardhat": "^2.12.3",
     "hardhat-gas-reporter": "^1.0.9",
     "solidity-coverage": "^0.8.2",
-    "typechain": "^8.1.1"
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0"
   }
 }
